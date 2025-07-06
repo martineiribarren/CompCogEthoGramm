@@ -29,5 +29,3 @@ This repository is intended as both a **research tool** and an **open framework*
 - The **interdisciplinary study of animal cognition**
 - Linking **philosophy of biology** and **AI-based behavioral analysis**
 
-```markdown
-![banner](assets/etoportada.jpg) 
