@@ -1,0 +1,79 @@
+# Bioacoustic Data Science: Datasets, Frameworks & Benchmarks
+
+A curated collection of resources for Computational Bioacoustics and Machine Learning applied to animal sound analysis. This repository serves as a reference for researchers and developers transitioning from general audio analysis to specialized bioacoustic tasks.
+
+## Key Benchmarks
+
+### 1. BEANS (The Benchmark of Animal Sounds)
+**Repo:** [earthspecies/beans](https://github.com/earthspecies/beans)  
+**Paper:** [Hagiwara et al., 2023](https://arxiv.org/abs/2301.00494)
+
+BEANS is a massive benchmark designed to measure the performance of Machine Learning models on bioacoustics tasks. It addresses the lack of standardized evaluation metrics in the field.
+
+* **Objective:** To provide a unified standard for evaluating ML models on animal sounds, similar to how GLUE works for NLP.
+* **Dataset Size:** Includes over 27,000 recordings covering diverse species (birds, frogs, insects, mammals).
+* **Tasks:** Contains 12 specific classification tasks ranging from species identification to call type classification.
+* **Why use it?** It is the current state-of-the-art for testing **Self-Supervised Learning (SSL)** models in bioacoustics. If you train a model (e.g., a Transformer), you test it here to prove it works.
+
+### 2. DCASE Challenges (Detection and Classification of Acoustic Scenes and Events)
+**Website:** [dcase.community](https://dcase.community/)
+
+The "World Cup" of computational audio. DCASE organizes annual challenges that define the state-of-the-art.
+
+* **Key Tasks for Bioacoustics:**
+    * **Task 5:** Bioacoustic Event Detection (Few-shot learning). Ideal for detecting species with very few training examples (e.g., rare animals).
+    * **Sound Event Detection (SED):** Detecting onset/offset of sounds in long recordings.
+* **Datasets:** DCASE releases high-quality, annotated datasets every year which serve as excellent training grounds.
+
+---
+
+## Datasets
+
+| Dataset | Focus | Best For | Link |
+| :--- | :--- | :--- | :--- |
+| **Xeno-canto** | Global bird sounds | Species Classification (Large Scale) | [xeno-canto.org](https://xeno-canto.org/) |
+| **Macaulay Library** | Biodiversity (Audio/Video) | Multi-modal analysis | [macaulaylibrary.org](https://www.macaulaylibrary.org/) |
+| **AudioSet** | General Audio (Google) | Pre-training large models (contains animal classes) | [research.google.com/audioset](https://research.google.com/audioset/) |
+| **InfantMarmosetVox** | Marmoset calls | Developmental vocalization & sequence analysis | [Zenodo Link](https://zenodo.org/) |
+| **Watkins Marine Mammal** | Marine mammals | Whale/Dolphin classification | [whoi.edu](https://cis.whoi.edu/science/B/whalesounds/index.cfm) |
+
+---
+
+## Frameworks & Tools
+
+### Specialized Libraries (Python)
+* **[Librosa](https://librosa.org/):** The industry standard for audio analysis. Essential for spectrogram generation, feature extraction (MFCCs), and signal processing.
+* **[Torchaudio](https://pytorch.org/audio/stable/index.html):** PyTorch's official audio library. Optimized for GPU training and deep learning pipelines.
+* **[OpenSoundscape](http://opensoundscape.org/):** Designed specifically for bioacoustics. Excellent for processing long field recordings (AudioMoth data).
+
+### Deep Learning Architectures
+* **DeepSqueak:** specialized in detecting ultrasonic vocalizations (USVs) in rodents and primates. Uses R-CNNs for object detection in spectrograms.
+    * *Repo:* [DrCoffenstein/DeepSqueak](https://github.com/DrCoffenstein/DeepSqueak)
+* **TweetyNet:** A neural network for segmenting vocalizations (detecting start/end times). Originally for birds, adaptable to other species.
+    * *Repo:* [yardencsgithub/tweetynet](https://github.com/yardencsgithub/tweetynet)
+* **YAMNet / VGGish:** Pre-trained models by Google. Useful for extracting "embeddings" (numerical representations) from audio without training a model from scratch.
+
+---
+
+## Experimental Workflows (From Field to Model)
+
+1.  **Data Collection:** Use low-cost, passive recorders like **AudioMoth**.
+2.  **Data Cleaning:**
+    * Use **Audacity** for manual inspection and labeling.
+    * Use **Automated Segmentation** (e.g., energy-based detection in Librosa) to remove silence.
+3.  **Feature Extraction:** Convert raw audio to **Mel-Spectrograms** or **MFCCs**.
+4.  **Modeling:**
+    * *Unsupervised:* Use **UMAP** or **PCA** to visualize clusters of sounds without labels.
+    * *Supervised:* Train **CNNs** (like ResNet or EfficientNet) on spectrograms for classification.
+5.  **Evaluation:** Use metrics like **Map@k** or **F1-Score**, standard in benchmarks like BEANS.
+
+---
+
+## Essential Reading
+* *The Interaction Engine Hypothesis* (Levinson, 2006) - For theoretical framing of communication.
+* *Conflict and Cooperation in Wild Chimpanzees* (Mitani, 2009) - For behavioral context.
+* *Applying Machine Learning to Primate Bioacoustics* (Cauzinille et al., 2024) - For technical implementation.
+
+---
+
+*Repository maintained by [Your Name] as part of a roadmap into Computational Bioacoustics.*
